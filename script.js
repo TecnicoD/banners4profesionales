@@ -42,6 +42,18 @@ function drawBanner() {
         drawTerminalShapes(accent);
     } else if (currentStyle === 'abstract') {
         drawAbstractShapes(accent);
+    } else if (currentStyle === 'geometric') {
+        drawGeometricShapes(accent);
+    } else if (currentStyle === 'cyberpunk') {
+        drawCyberpunkShapes(accent);
+    } else if (currentStyle === 'brutalist') {
+        drawBrutalistShapes(accent);
+    } else if (currentStyle === 'retro') {
+        drawRetroShapes(accent);
+    } else if (currentStyle === 'corporate') {
+        drawCorporateShapes(accent);
+    } else if (currentStyle === 'glass') {
+        drawGlassShapes(accent);
     }
     // 'minimal' has no extra shapes
 
@@ -80,6 +92,46 @@ function drawBackground(style, accent) {
             gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, '#be185d'); // Pink 700
             gradient.addColorStop(1, '#0f172a'); // Slate 900
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case 'geometric':
+            // Dark elegant background
+            ctx.fillStyle = '#111827'; // Gray 900
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case 'cyberpunk':
+            // Deep black/blue
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case 'brutalist':
+            // Paper-like off-white or raw concrete
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case 'retro':
+            // Sunset Gradient
+            gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#2e0249'); // Deep Purple
+            gradient.addColorStop(0.5, '#a91079'); // Magenta
+            gradient.addColorStop(1, '#ffc700'); // Sunset Yellow
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case 'corporate':
+            // Professional Blue/Grey
+            ctx.fillStyle = '#f3f4f6'; // Light grey bg
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Add a side bar
+            ctx.fillStyle = '#1e3a8a'; // Dark Blue sidebar
+            ctx.fillRect(0, 0, 100, canvas.height);
+            break;
+        case 'glass':
+            // Colorful mesh gradient background
+            gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#f472b6'); // Pink
+            gradient.addColorStop(1, '#60a5fa'); // Blue
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             break;
@@ -155,6 +207,144 @@ function drawAbstractShapes(accent) {
     ctx.beginPath();
     ctx.arc(1400, 0, 200, 0, Math.PI * 2);
     ctx.fill();
+}
+
+function drawGeometricShapes(accent) {
+    ctx.save();
+    ctx.globalAlpha = 0.1;
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 2;
+
+    for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - (i * 50));
+        ctx.lineTo(canvas.width, (i * 100));
+        ctx.stroke();
+    }
+    
+    // Some triangles
+    ctx.fillStyle = accent;
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.lineTo(200, 300);
+    ctx.lineTo(300, 100);
+    ctx.fill();
+
+    ctx.restore();
+}
+
+function drawCyberpunkShapes(accent) {
+    ctx.save();
+    
+    // Grid floor
+    ctx.strokeStyle = '#0ff'; // Cyan
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for(let i=0; i<canvas.width; i+=40) {
+        ctx.moveTo(i, 300);
+        ctx.lineTo(i - 200, 400); // perspective
+    }
+    for(let i=300; i<400; i+=20) {
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+    }
+    ctx.stroke();
+
+    // Glitch text effect decoration
+    ctx.fillStyle = '#ff00ff';
+    ctx.fillRect(50, 50, 20, 100);
+    ctx.fillStyle = '#00ffff';
+    ctx.fillRect(60, 60, 20, 100);
+    
+    ctx.restore();
+}
+
+function drawBrutalistShapes(accent) {
+    ctx.save();
+    // Harsh black borders
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 8;
+    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+    // Hard solid shadow box
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(100, 100, 200, 200);
+    ctx.fillStyle = accent; 
+    ctx.fillRect(80, 80, 200, 200); // Offset
+    ctx.strokeRect(80, 80, 200, 200); // Border for box
+
+    ctx.restore();
+}
+
+function drawRetroShapes(accent) {
+    ctx.save();
+    
+    // Sun
+    const sunGradient = ctx.createLinearGradient(0, 100, 0, 300);
+    sunGradient.addColorStop(0, '#ffcc00');
+    sunGradient.addColorStop(1, '#ff6600');
+    ctx.fillStyle = sunGradient;
+    ctx.beginPath();
+    ctx.arc(300, 300, 150, 0, Math.PI*2);
+    ctx.fill();
+
+    // Scanlines over sun
+    ctx.fillStyle = '#2e0249'; // Background color lines
+    for(let i=150; i<450; i+=10) {
+        ctx.fillRect(150, i, 300, 2);
+    }
+    
+    ctx.restore();
+}
+
+function drawCorporateShapes(accent) {
+    ctx.save();
+    
+    // Diagonal clean cut
+    ctx.fillStyle = accent; 
+    ctx.beginPath();
+    ctx.moveTo(400, 0);
+    ctx.lineTo(600, 0);
+    ctx.lineTo(500, canvas.height);
+    ctx.lineTo(300, canvas.height);
+    ctx.fill();
+
+    // Second faint line
+    ctx.fillStyle = accent + '40'; 
+    ctx.beginPath();
+    ctx.moveTo(600, 0);
+    ctx.lineTo(800, 0);
+    ctx.lineTo(700, canvas.height);
+    ctx.lineTo(500, canvas.height);
+    ctx.fill();
+    
+    ctx.restore();
+}
+
+function drawGlassShapes(accent) {
+    ctx.save();
+    
+    // Glass Card
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.lineWidth = 1;
+    
+    // Rounded rect manually or use roundRect if supported (recent browsers)
+    // Fallback: regular rect
+    const x=100, y=50, w=400, h=300;
+    ctx.fillRect(x,y,w,h);
+    ctx.strokeRect(x,y,w,h);
+    
+    // Shine
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x+w, y);
+    ctx.lineTo(x+w - 100, y+h);
+    ctx.lineTo(x-100, y+h);
+    ctx.fill();
+
+    ctx.restore();
 }
 
 
