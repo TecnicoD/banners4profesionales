@@ -308,7 +308,7 @@ canvas {
 
     .sidebar {
         width: 100%;
-        height: 50%;
+        height: 65%;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
     }
