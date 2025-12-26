@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Banners LinkedIn</title>
+    <!-- Vinculamos la hoja de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente moderna desde Google Fonts para un look profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top Header -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon">in</div>
+            <h1>LinkBanner AI</h1>
+        </div>
+        <div class="header-badge">
+            ✨ Powered by Gemini 2.5
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar">
+
+            <!-- Group: Personal Info -->
+            <div class="control-section">
+                <label>Nombre Completo</label>
+                <input type="text" id="nameInput" placeholder="Ej: Dante Rodríguez" autocomplete="off">
+
+                <label>Título Profesional</label>
+                <input type="text" id="titleInput" placeholder="Ej: Técnico Programador" autocomplete="off">
+
+                <label>Tech Stack / Subtítulo</label>
+                <input type="text" id="stackInput" placeholder="Ej: .NET • PYTHON • UNITY2D" autocomplete="off">
+            </div>
+
+            <!-- Group: Styles -->
+            <div class="control-section">
+                <div class="section-header">
+                    <h2>🎨 Estilo Visual</h2>
+                    <span class="random-btn" id="randomBtn">⚡ Generar Fondo</span>
+                </div>
+
+                <div class="style-grid">
+                    <button class="style-btn active" data-style="modern">Gradiente Moderno</button>
+                    <button class="style-btn" data-style="minimal">Minimalista Limpio</button>
+                    <button class="style-btn" data-style="terminal">Terminal Oscura</button>
+                    <button class="style-btn" data-style="abstract">Arte Abstracto</button>
+                </div>
+
+                <div class="color-row">
+                    <div class="color-control">
+                        <label>Color de Acento</label>
+                        <input type="color" id="accentColor" value="#3b82f6">
+                    </div>
+                    <div class="color-control">
+                        <label>Color de Texto</label>
+                        <input type="color" id="textColor" value="#ffffff">
+                    </div>
+                </div>
+
+                <label>Tipografía</label>
+                <select id="fontSelect" class="font-select">
+                    <option value="Inter">Modern Sans (Inter)</option>
+                    <option value="Courier Prime">Code (Monospace)</option>
+                    <option value="Playfair Display">Serif Elegante</option>
+                </select>
+            </div>
+
+            <!-- Download is now separate or at bottom? Reference showed it as card, but functionality is good in sidebar too or floating. 
+                 Ill keep a primary action button here for ease, and maybe redundant in cards. -->
+            <button id="downloadBtn" class="primary-btn">Descargar PNG</button>
+        </aside>
+
+        <!-- Main Preview Area -->
+        <main class="content-area">
+            <div class="preview-header">
+                <h2>Vista Previa en Vivo</h2>
+                <span class="res-badge">1584 x 396 px</span>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="bannerCanvas" width="1584" height="396"></canvas>
+            </div>
+
+            <!-- Info Cards (Features) -->
+            <div class="info-cards">
+                <div class="card">
+                    <div class="card-icon">1</div>
+                    <h3>Personaliza Info</h3>
+                    <p>Ingresa tu nombre, rol y stack tecnológico. Elige colores que combinen.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">2</div>
+                    <h3>Mejoras con IA</h3>
+                    <p>Usa Gemini para reescribir tu título o generar un fondo abstracto único.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">3</div>
+                    <h3>Exportar</h3>
+                    <p>Descarga el PNG de alta resolución y súbelo a tu perfil de LinkedIn.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- More fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="script.js"></script>
+</body>
+
+</html>
